@@ -1,0 +1,69 @@
+# Task ID: 1
+# Title: モノレポ基盤セットアップ
+# Status: done
+# Dependencies: None
+# Priority: high
+# Description: Turborepo + npm workspaces によるモノレポ構成の構築
+# Details:
+1. Turborepo初期化: `npx create-turbo@latest`
+2. apps/, packages/ディレクトリ構成作成
+3. package.json workspaces設定
+4. turbo.json pipeline設定（dev, build, test, lint, typecheck, preview, deploy）
+5. 共通パッケージ作成: @repo/db, @repo/shared, @repo/eslint-config, @repo/tsconfig
+6. Docker Compose設定（PostgreSQL + Redis）
+7. .gitignore, .npmrc設定
+
+# Test Strategy:
+ワークスペース依存関係解決テスト、npm install成功確認、turbo dev実行テスト
+
+# Subtasks:
+## 1. Turborepo初期化とプロジェクト構造作成 [done]
+### Dependencies: None
+### Description: Turborepoプロジェクトの初期化とディレクトリ構造の構築
+### Details:
+1. npx create-turbo@latest . でTurborepoプロジェクト初期化
+2. apps/ディレクトリ作成（frontend, backend, jobs用）
+3. packages/ディレクトリ作成（共有パッケージ用）
+4. 不要な初期ファイル削除とプロジェクト構造整理
+5. README.md更新
+
+## 2. ワークスペース設定とpackage.json構成 [done]
+### Dependencies: None
+### Description: npm workspacesの設定とルートレベルのpackage.json構成
+### Details:
+1. ルートpackage.jsonにworkspaces設定追加
+2. スクリプト設定（dev, build, test, lint, typecheck, preview, deploy）
+3. 共通dependencies設定（TypeScript, Biome等）
+4. .npmrc設定（hoist-pattern, strict-peer-deps等）
+5. engines設定でNode.js 18+必須化
+
+## 3. Turborepo pipeline設定 [done]
+### Dependencies: None
+### Description: turbo.jsonでのタスクパイプライン設定とキャッシュ戦略構築
+### Details:
+1. turbo.json作成・設定
+2. dev, build, test, lint, typecheck, preview, deployタスク定義
+3. 依存関係設定（build -> typecheck -> test -> lint）
+4. キャッシュ設定（outputs, inputs指定）
+5. 並列実行最適化設定
+
+## 4. 共通パッケージ作成 [done]
+### Dependencies: None
+### Description: モノレポ全体で使用する共通パッケージの作成
+### Details:
+1. packages/db/パッケージ作成（Drizzle ORM設定）
+2. packages/shared/パッケージ作成（型定義・Zodスキーマ）
+3. packages/eslint-config/パッケージ作成（Biome設定）
+4. packages/tsconfig/パッケージ作成（共通TypeScript設定）
+5. 各パッケージのpackage.json設定とexports定義
+
+## 5. 開発環境設定とDocker Compose構築 [done]
+### Dependencies: None
+### Description: ローカル開発環境の構築とDocker Compose設定
+### Details:
+1. docker-compose.yml作成（PostgreSQL + Redis設定）
+2. .env.example作成（環境変数テンプレート）
+3. .gitignore設定（node_modules, .env, .wrangler等）
+4. dev環境用スクリプト作成（setup, db:start, db:stop）
+5. Wrangler設定ファイル準備
+

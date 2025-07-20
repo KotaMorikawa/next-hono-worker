@@ -1,0 +1,18 @@
+# Task ID: 3
+# Title: 共有型定義・バリデーションスキーマ
+# Status: pending
+# Dependencies: 2
+# Priority: high
+# Description: TypeScript型定義とZodスキーマによる型安全性確保
+# Details:
+1. packages/shared/パッケージ作成
+2. 認証スキーマ: loginSchema, registerSchema
+3. API管理スキーマ: createApiKeySchema, apiSpecificationSchema
+4. 使用量スキーマ: usageStatsSchema, billingSchema
+5. 学習コンテンツスキーマ: tutorialSchema, progressSchema
+6. LLM統合スキーマ: naturalLanguageInputSchema, generatedCodeSchema
+7. x402プロトコルスキーマ: paymentConfigSchema
+8. TypeScript strict mode設定
+
+# Test Strategy:
+スキーマバリデーションテスト、型推論テスト、境界値テスト、エラーハンドリングテスト

@@ -1,0 +1,185 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "モノレポ基盤セットアップ",
+        "description": "Turborepo + npm workspaces によるモノレポ構成の構築",
+        "details": "1. Turborepo初期化: `npx create-turbo@latest`\n2. apps/, packages/ディレクトリ構成作成\n3. package.json workspaces設定\n4. turbo.json pipeline設定（dev, build, test, lint, typecheck, preview, deploy）\n5. 共通パッケージ作成: @repo/db, @repo/shared, @repo/eslint-config, @repo/tsconfig\n6. Docker Compose設定（PostgreSQL + Redis）\n7. .gitignore, .npmrc設定",
+        "testStrategy": "ワークスペース依存関係解決テスト、npm install成功確認、turbo dev実行テスト",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Turborepo初期化とプロジェクト構造作成",
+            "description": "Turborepoプロジェクトの初期化とディレクトリ構造の構築",
+            "dependencies": [],
+            "details": "1. npx create-turbo@latest . でTurborepoプロジェクト初期化\n2. apps/ディレクトリ作成（frontend, backend, jobs用）\n3. packages/ディレクトリ作成（共有パッケージ用）\n4. 不要な初期ファイル削除とプロジェクト構造整理\n5. README.md更新",
+            "status": "done",
+            "testStrategy": "ディレクトリ構造確認、プロジェクト初期化の成功確認"
+          },
+          {
+            "id": 2,
+            "title": "ワークスペース設定とpackage.json構成",
+            "description": "npm workspacesの設定とルートレベルのpackage.json構成",
+            "dependencies": [],
+            "details": "1. ルートpackage.jsonにworkspaces設定追加\n2. スクリプト設定（dev, build, test, lint, typecheck, preview, deploy）\n3. 共通dependencies設定（TypeScript, Biome等）\n4. .npmrc設定（hoist-pattern, strict-peer-deps等）\n5. engines設定でNode.js 18+必須化",
+            "status": "done",
+            "testStrategy": "npm install実行成功、workspace依存関係解決確認"
+          },
+          {
+            "id": 3,
+            "title": "Turborepo pipeline設定",
+            "description": "turbo.jsonでのタスクパイプライン設定とキャッシュ戦略構築",
+            "dependencies": [],
+            "details": "1. turbo.json作成・設定\n2. dev, build, test, lint, typecheck, preview, deployタスク定義\n3. 依存関係設定（build -> typecheck -> test -> lint）\n4. キャッシュ設定（outputs, inputs指定）\n5. 並列実行最適化設定",
+            "status": "done",
+            "testStrategy": "turbo dev実行テスト、並列タスク実行確認、キャッシュ動作確認"
+          },
+          {
+            "id": 4,
+            "title": "共通パッケージ作成",
+            "description": "モノレポ全体で使用する共通パッケージの作成",
+            "dependencies": [],
+            "details": "1. packages/db/パッケージ作成（Drizzle ORM設定）\n2. packages/shared/パッケージ作成（型定義・Zodスキーマ）\n3. packages/eslint-config/パッケージ作成（Biome設定）\n4. packages/tsconfig/パッケージ作成（共通TypeScript設定）\n5. 各パッケージのpackage.json設定とexports定義",
+            "status": "done",
+            "testStrategy": "パッケージ間依存関係確認、インポートテスト、型チェック動作確認"
+          },
+          {
+            "id": 5,
+            "title": "開発環境設定とDocker Compose構築",
+            "description": "ローカル開発環境の構築とDocker Compose設定",
+            "dependencies": [],
+            "details": "1. docker-compose.yml作成（PostgreSQL + Redis設定）\n2. .env.example作成（環境変数テンプレート）\n3. .gitignore設定（node_modules, .env, .wrangler等）\n4. dev環境用スクリプト作成（setup, db:start, db:stop）\n5. Wrangler設定ファイル準備",
+            "status": "done",
+            "testStrategy": "Docker Compose起動テスト、データベース接続確認、環境変数読み込み確認"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "データベーススキーマ設計・構築",
+        "description": "PostgreSQL + Drizzle ORM によるデータベース基盤構築",
+        "details": "1. packages/db/パッケージ作成\n2. Drizzle ORM設定（PostgreSQL）\n3. ユーザー管理テーブル: users, organizations\n4. API管理テーブル: api_keys, generated_apis\n5. 使用量追跡テーブル: api_usage, billing_records\n6. 学習進捗テーブル: learning_progress, tutorial_completion\n7. マイグレーションファイル作成\n8. Hyperdrive接続設定（本番用）",
+        "testStrategy": "マイグレーション実行テスト、基本CRUD操作テスト、制約違反テスト、接続プールテスト",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "共有型定義・バリデーションスキーマ",
+        "description": "TypeScript型定義とZodスキーマによる型安全性確保",
+        "details": "1. packages/shared/パッケージ作成\n2. 認証スキーマ: loginSchema, registerSchema\n3. API管理スキーマ: createApiKeySchema, apiSpecificationSchema\n4. 使用量スキーマ: usageStatsSchema, billingSchema\n5. 学習コンテンツスキーマ: tutorialSchema, progressSchema\n6. LLM統合スキーマ: naturalLanguageInputSchema, generatedCodeSchema\n7. x402プロトコルスキーマ: paymentConfigSchema\n8. TypeScript strict mode設定",
+        "testStrategy": "スキーマバリデーションテスト、型推論テスト、境界値テスト、エラーハンドリングテスト",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Hono + x402バックエンド実装",
+        "description": "Cloudflare Workers上でHono + x402プロトコル統合のAPI基盤構築",
+        "details": "1. apps/backend/パッケージ作成\n2. Hono + @coinbase/x402-hono ミドルウェア統合\n3. Base Sepolia + USDC決済設定\n4. 認証ミドルウェア（JWT）\n5. ユーザー管理API: /internal/auth/* \n6. API生成エンドポイント: /internal/generator/*\n7. 動的ルート管理システム\n8. Service Bindings設定\n9. wrangler.toml設定",
+        "testStrategy": "x402決済フローテスト、JWT認証テスト、動的ルート登録テスト、Service Bindings通信テスト",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Next.js学習プラットフォーム構築",
+        "description": "@opennextjs/cloudflare による Next.js フロントエンド実装",
+        "details": "1. apps/frontend/パッケージ作成\n2. Next.js 15 + App Router設定\n3. @opennextjs/cloudflare統合\n4. 学習コンテンツページ: /learn/basics, /learn/tutorial, /learn/playground\n5. API Builder: /api-builder/generator, /api-builder/dashboard\n6. AIデモ: /ai-demo/chat, /ai-demo/payments\n7. 認証ページ: /auth/login, /auth/register\n8. レスポンシブUI（Tailwind CSS）\n9. wrangler.toml設定",
+        "testStrategy": "ページレンダリングテスト、App Routerナビゲーションテスト、レスポンシブテスト、Cloudflare Workers動作テスト",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "LLM統合・自然言語API生成エンジン",
+        "description": "Gemini Pro + ユーザーAPIキー対応のマルチLLM自然言語→API変換システム",
+        "details": "1. packages/llm-services/パッケージ作成\n2. Google Gemini Pro統合（メイン、コスト最適化）\n3. OpenAI/Anthropic APIキー設定UI（ユーザー提供）\n4. 自然言語解析パイプライン: 意図分類 → 技術仕様 → コード生成 → 価格提案\n5. Hono + x402コード自動生成\n6. 外部APIサービス統合（OpenAI Vision, Google Translate, Whisper）\n7. 生成コード安全性検証（VM2サンドボックス）\n8. リアルタイムストリーミング応答",
+        "testStrategy": "自然言語解析精度テスト、コード生成品質テスト、サンドボックス隔離テスト、LLM応答時間テスト",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "x402プロトコル統合・ブロックチェーン接続",
+        "description": "Base Sepolia + USDC専用のx402決済システムとウォレット連携",
+        "details": "1. packages/x402-integration/, packages/blockchain-connector/作成\n2. @coinbase/x402-hono ミドルウェア設定\n3. Base Sepolia ネットワーク専用設定\n4. USDC決済トークン統合\n5. MetaMask/WalletConnect ウォレット接続\n6. 決済フロー可視化コンポーネント\n7. トランザクション追跡・確認システム\n8. エラーハンドリング（ガス不足、ネットワークエラー等）",
+        "testStrategy": "テストネット決済テスト、ウォレット接続テスト、トランザクション追跡テスト、エラーケーステスト",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "AIエージェントシミュレーター・学習体験",
+        "description": "AI自動決済フローの可視化とインタラクティブ学習コンテンツ実装",
+        "details": "1. AIエージェントシミュレータークラス実装\n2. ステップバイステップ決済フロー可視化\n3. 学習パス設定: 初心者30分、開発者60分\n4. インタラクティブチュートリアル\n5. 理解度チェッククイズ\n6. 学習進捗追跡システム\n7. 体験型デモ（天気API、翻訳API等）\n8. リアルタイム決済プロセス表示",
+        "testStrategy": "学習フロー完走テスト、進捗保存テスト、インタラクティブ要素動作テスト、シミュレーション精度テスト",
+        "priority": "medium",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "動的API配信・管理システム",
+        "description": "ユーザー生成APIの動的デプロイと安全な実行環境構築",
+        "details": "1. 動的ルート登録システム（Hono）\n2. 生成APIの安全な実行環境（VM2サンドボックス）\n3. API管理ダッシュボード（CRUD、有効化/無効化）\n4. 使用量追跡・分析システム\n5. パフォーマンス監視（レスポンス時間、エラー率）\n6. リアルタイム使用統計表示\n7. API品質スコア算出\n8. Workers KV キャッシュ統合",
+        "testStrategy": "動的デプロイテスト、サンドボックス隔離テスト、使用量計測テスト、パフォーマンステスト",
+        "priority": "medium",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "CI/CD・モニタリング・品質保証",
+        "description": "Cloudflare Workers デプロイパイプラインと包括的監視システム構築",
+        "details": "1. GitHub Actions CI/CD設定\n2. Wrangler デプロイ自動化\n3. 環境別デプロイ（PR→プレビュー、develop→ステージング、main→本番）\n4. Cloudflare Analytics 統合\n5. Sentry エラー追跡\n6. Playwright E2Eテスト\n7. パフォーマンステスト（Lighthouse CI）\n8. セキュリティ監査設定\n9. SLA監視（99.9%可用性、P95<200ms）",
+        "testStrategy": "デプロイパイプラインテスト、E2Eテスト実行、監視アラートテスト、パフォーマンス基準達成確認",
+        "priority": "low",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-20T17:54:30.297Z",
+      "updated": "2025-07-20T18:55:56.971Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

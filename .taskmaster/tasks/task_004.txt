@@ -1,0 +1,19 @@
+# Task ID: 4
+# Title: Hono + x402バックエンド実装
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Cloudflare Workers上でHono + x402プロトコル統合のAPI基盤構築
+# Details:
+1. apps/backend/パッケージ作成
+2. Hono + @coinbase/x402-hono ミドルウェア統合
+3. Base Sepolia + USDC決済設定
+4. 認証ミドルウェア（JWT）
+5. ユーザー管理API: /internal/auth/* 
+6. API生成エンドポイント: /internal/generator/*
+7. 動的ルート管理システム
+8. Service Bindings設定
+9. wrangler.toml設定
+
+# Test Strategy:
+x402決済フローテスト、JWT認証テスト、動的ルート登録テスト、Service Bindings通信テスト

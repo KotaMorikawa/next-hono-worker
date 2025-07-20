@@ -1,0 +1,19 @@
+# Task ID: 5
+# Title: Next.js学習プラットフォーム構築
+# Status: pending
+# Dependencies: 4
+# Priority: high
+# Description: @opennextjs/cloudflare による Next.js フロントエンド実装
+# Details:
+1. apps/frontend/パッケージ作成
+2. Next.js 15 + App Router設定
+3. @opennextjs/cloudflare統合
+4. 学習コンテンツページ: /learn/basics, /learn/tutorial, /learn/playground
+5. API Builder: /api-builder/generator, /api-builder/dashboard
+6. AIデモ: /ai-demo/chat, /ai-demo/payments
+7. 認証ページ: /auth/login, /auth/register
+8. レスポンシブUI（Tailwind CSS）
+9. wrangler.toml設定
+
+# Test Strategy:
+ページレンダリングテスト、App Routerナビゲーションテスト、レスポンシブテスト、Cloudflare Workers動作テスト

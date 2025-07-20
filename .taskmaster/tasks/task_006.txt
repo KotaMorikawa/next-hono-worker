@@ -1,0 +1,18 @@
+# Task ID: 6
+# Title: LLM統合・自然言語API生成エンジン
+# Status: pending
+# Dependencies: 5
+# Priority: medium
+# Description: Gemini Pro + ユーザーAPIキー対応のマルチLLM自然言語→API変換システム
+# Details:
+1. packages/llm-services/パッケージ作成
+2. Google Gemini Pro統合（メイン、コスト最適化）
+3. OpenAI/Anthropic APIキー設定UI（ユーザー提供）
+4. 自然言語解析パイプライン: 意図分類 → 技術仕様 → コード生成 → 価格提案
+5. Hono + x402コード自動生成
+6. 外部APIサービス統合（OpenAI Vision, Google Translate, Whisper）
+7. 生成コード安全性検証（VM2サンドボックス）
+8. リアルタイムストリーミング応答
+
+# Test Strategy:
+自然言語解析精度テスト、コード生成品質テスト、サンドボックス隔離テスト、LLM応答時間テスト

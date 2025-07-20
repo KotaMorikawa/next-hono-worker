@@ -1,0 +1,23 @@
+{
+  "name": "@repo/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared TypeScript configurations for x402 Learning Lab",
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "workers.json",
+    "package.json"
+  ],
+  "exports": {
+    "./base.json": "./base.json",
+    "./nextjs.json": "./nextjs.json",
+    "./workers.json": "./workers.json",
+    "./package.json": "./package.json"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  }
+}

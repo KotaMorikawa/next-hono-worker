@@ -1,0 +1,18 @@
+# Task ID: 7
+# Title: x402プロトコル統合・ブロックチェーン接続
+# Status: pending
+# Dependencies: 6
+# Priority: medium
+# Description: Base Sepolia + USDC専用のx402決済システムとウォレット連携
+# Details:
+1. packages/x402-integration/, packages/blockchain-connector/作成
+2. @coinbase/x402-hono ミドルウェア設定
+3. Base Sepolia ネットワーク専用設定
+4. USDC決済トークン統合
+5. MetaMask/WalletConnect ウォレット接続
+6. 決済フロー可視化コンポーネント
+7. トランザクション追跡・確認システム
+8. エラーハンドリング（ガス不足、ネットワークエラー等）
+
+# Test Strategy:
+テストネット決済テスト、ウォレット接続テスト、トランザクション追跡テスト、エラーケーステスト

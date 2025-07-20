@@ -1,0 +1,58 @@
+{
+  "name": "x402-learning-lab",
+  "version": "1.0.0",
+  "description": "x402プロトコル学習プラットフォーム - 自然言語でAPIを作成し、x402決済を体験できる教育プラットフォーム",
+  "private": true,
+  "scripts": {
+    "setup": "npm install && npm run typecheck && npm run lint",
+    "dev": "turbo dev --parallel",
+    "build": "turbo build",
+    "test": "turbo test",
+    "test:watch": "turbo test -- --watch",
+    "lint": "turbo lint && biome lint .",
+    "lint:fix": "turbo lint:fix && biome lint --write .",
+    "typecheck": "turbo typecheck && tsc --noEmit",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "organize-imports": "biome check --write --assist-enabled=true .",
+    "clean": "turbo clean && rm -rf node_modules",
+    "preview": "turbo preview",
+    "deploy": "turbo deploy",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:reset": "docker-compose down -v && docker-compose up -d",
+    "db:generate": "cd packages/db && npm run db:generate",
+    "db:migrate": "cd packages/db && npm run db:migrate",
+    "db:studio": "cd packages/db && npm run db:studio",
+    "db:reset": "npm run docker:reset && sleep 5 && npm run db:migrate"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [
+    "x402",
+    "payment",
+    "api",
+    "blockchain",
+    "learning"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "packageManager": "npm@9.0.0",
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@types/node": "^20.14.10",
+    "turbo": "^2.5.5",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.1"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}

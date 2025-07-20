@@ -1,0 +1,18 @@
+# Task ID: 2
+# Title: データベーススキーマ設計・構築
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: PostgreSQL + Drizzle ORM によるデータベース基盤構築
+# Details:
+1. packages/db/パッケージ作成
+2. Drizzle ORM設定（PostgreSQL）
+3. ユーザー管理テーブル: users, organizations
+4. API管理テーブル: api_keys, generated_apis
+5. 使用量追跡テーブル: api_usage, billing_records
+6. 学習進捗テーブル: learning_progress, tutorial_completion
+7. マイグレーションファイル作成
+8. Hyperdrive接続設定（本番用）
+
+# Test Strategy:
+マイグレーション実行テスト、基本CRUD操作テスト、制約違反テスト、接続プールテスト

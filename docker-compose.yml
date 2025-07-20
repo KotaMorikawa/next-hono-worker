@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: x402-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: x402_learning_lab
+      POSTGRES_USER: x402_user
+      POSTGRES_PASSWORD: x402_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./packages/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U x402_user -d x402_learning_lab"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: x402-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Drizzle Studio for database management
+  drizzle-studio:
+    image: node:20-alpine
+    container_name: x402-drizzle-studio
+    working_dir: /app
+    ports:
+      - "4983:4983"
+    volumes:
+      - .:/app
+    command: sh -c "cd packages/db && npm run db:studio"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - tools
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: x402-network

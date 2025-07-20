@@ -1,0 +1,128 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalDependencies": [
+    "biome.json",
+    "tsconfig.json",
+    ".env.example",
+    "wrangler.toml"
+  ],
+  "globalEnv": ["NODE_ENV", "CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "typecheck"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "public/**",
+        "next.config.js",
+        "wrangler.toml",
+        "package.json"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        ".wrangler/**",
+        "build/**"
+      ],
+      "env": ["NODE_ENV", "NEXT_PUBLIC_*", "CLOUDFLARE_*"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"],
+      "env": ["NODE_ENV", "NEXT_PUBLIC_*", "CLOUDFLARE_*"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "biome.json",
+        "package.json"
+      ],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "biome.json"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "app/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^test", "^build"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "test/**/*.{ts,tsx,js,jsx}",
+        "**/*.test.{ts,tsx,js,jsx}",
+        "vitest.config.*",
+        "package.json"
+      ],
+      "outputs": ["coverage/**"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "format": {
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx,json}",
+        "app/**/*.{ts,tsx,js,jsx,json}",
+        "biome.json"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "format:check": {
+      "dependsOn": ["^format:check"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx,json}",
+        "app/**/*.{ts,tsx,js,jsx,json}",
+        "biome.json"
+      ],
+      "outputs": []
+    },
+    "organize-imports": {
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "biome.json"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "preview": {
+      "dependsOn": ["build"],
+      "env": ["NODE_ENV", "NEXT_PUBLIC_*", "CLOUDFLARE_*"],
+      "cache": false,
+      "persistent": true
+    },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint", "typecheck"],
+      "inputs": [".next/**", "dist/**", "wrangler.toml", "package.json"],
+      "outputs": [],
+      "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
