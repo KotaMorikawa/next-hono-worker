@@ -1,6 +1,6 @@
 # Task ID: 3
 # Title: 共有型定義・バリデーションスキーマ
-# Status: in-progress
+# Status: done
 # Dependencies: 2
 # Priority: high
 # Description: TypeScript型定義とZodスキーマによる型安全性確保
@@ -18,49 +18,49 @@
 スキーマバリデーションテスト、型推論テスト、境界値テスト、エラーハンドリングテスト
 
 # Subtasks:
-## 1. Sharedパッケージ基盤構築 [in-progress]
+## 1. Sharedパッケージ基盤構築 [done]
 ### Dependencies: None
 ### Description: packages/shared/パッケージの初期設定とTypeScript strict mode環境構築
 ### Details:
 packages/shared/ディレクトリ作成、package.json設定（name: @repo/shared）、tsconfig.json作成（strict: true、strictNullChecks: true等）、Zodライブラリインストール、エクスポート構造設計（index.ts）
 
-## 2. 認証関連スキーマ実装 [pending]
+## 2. 認証関連スキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: ユーザー認証に必要なloginSchemaとregisterSchemaのZodスキーマ定義
 ### Details:
 schemas/auth.ts作成、loginSchema（email, password）、registerSchema（email, password, name, organizationName）、パスワード強度バリデーション、メールフォーマット検証、型推論用type定義エクスポート
 
-## 3. API管理スキーマ実装 [pending]
+## 3. API管理スキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: API Key管理とAPI仕様定義のためのcreateApiKeySchemaとapiSpecificationSchema実装
 ### Details:
 schemas/api-management.ts作成、createApiKeySchema（name, permissions, expiresAt）、apiSpecificationSchema（name, description, naturalLanguageInput, generatedCode, endpoint, method, headers, params）、権限レベル定義（enum）
 
-## 4. 使用量・課金スキーマ実装 [pending]
+## 4. 使用量・課金スキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: API使用量追跡とビリング管理のためのusageStatsSchemaとbillingSchema定義
 ### Details:
 schemas/usage-billing.ts作成、usageStatsSchema（apiId, timestamp, requestCount, responseTime, errorCount）、billingSchema（userId, period, totalCost, breakdowns, paymentStatus）、集計ロジック用ヘルパー型定義
 
-## 5. 学習コンテンツスキーマ実装 [pending]
+## 5. 学習コンテンツスキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: チュートリアルと学習進捗管理のためのtutorialSchemaとprogressSchema構築
 ### Details:
 schemas/learning.ts作成、tutorialSchema（id, title, content, category, difficulty, estimatedTime, prerequisites）、progressSchema（userId, tutorialId, completedSteps, totalSteps, startedAt, completedAt, score）、難易度レベルenum定義
 
-## 6. LLM統合スキーマ実装 [pending]
+## 6. LLM統合スキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: 自然言語入力と生成コード管理のためのnaturalLanguageInputSchemaとgeneratedCodeSchema定義
 ### Details:
 schemas/llm-integration.ts作成、naturalLanguageInputSchema（userPrompt, context, constraints, preferredLanguage）、generatedCodeSchema（sourcePrompt, code, language, framework, dependencies, executionTime, llmProvider）、プロンプト長制限バリデーション
 
-## 7. x402プロトコルスキーマ実装 [pending]
+## 7. x402プロトコルスキーマ実装 [done]
 ### Dependencies: 3.1
 ### Description: x402決済設定管理のためのpaymentConfigSchemaと関連型定義
 ### Details:
 schemas/x402-protocol.ts作成、paymentConfigSchema（walletAddress, priceInUSDC, chainId, paymentMethod, transactionHash）、Base Sepoliaチェーン専用バリデーション、USDCアドレス検証、金額精度バリデーション（小数点6桁）
 
-## 8. 統合テストスイート構築 [pending]
+## 8. 統合テストスイート構築 [done]
 ### Dependencies: 3.2, 3.3, 3.4, 3.5, 3.6, 3.7
 ### Description: 全スキーマの相互運用性と型安全性を検証する包括的テストスイート実装
 ### Details:

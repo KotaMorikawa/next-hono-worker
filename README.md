@@ -87,23 +87,23 @@ npm run deploy     # 本番デプロイ
 
 MIT
 <!-- TASKMASTER_EXPORT_START -->
-> 🎯 **Taskmaster Export** - 2025-07-21 04:57:56 UTC
+> 🎯 **Taskmaster Export** - 2025-07-21 05:14:57 UTC
 > 📋 Export: with subtasks • Status filter: none
 > 🔗 Powered by [Task Master](https://task-master.dev?utm_source=github-readme&utm_medium=readme-export&utm_campaign=next-hono-worker&utm_content=task-export-link)
 
 | Project Dashboard |  |
 | :-                |:-|
-| Task Progress     | ████░░░░░░░░░░░░░░░░ 20% |
-| Done | 2 |
+| Task Progress     | ██████░░░░░░░░░░░░░░ 30% |
+| Done | 3 |
 | In Progress | 1 |
-| Pending | 7 |
+| Pending | 6 |
 | Deferred | 0 |
 | Cancelled | 0 |
 |-|-|
-| Subtask Progress | ███████████░░░░░░░░░ 56% |
-| Completed | 10 |
+| Subtask Progress | █████████████░░░░░░░ 67% |
+| Completed | 18 |
 | In Progress | 1 |
-| Pending | 7 |
+| Pending | 8 |
 
 
 | ID | Title | Status | Priority | Dependencies | Complexity |
@@ -120,16 +120,25 @@ MIT
 | 2.3 | API管理・使用量追跡スキーマ定義 | ✓&nbsp;done | -            | 2.1, 2.2 | N/A |
 | 2.4 | 学習進捗管理スキーマとマイグレーション | ✓&nbsp;done | -            | 2.2, 2.3 | N/A |
 | 2.5 | データベース接続層とエクスポート設定 | ✓&nbsp;done | -            | 2.4 | N/A |
-| 3 | 共有型定義・バリデーションスキーマ | ►&nbsp;in-progress | high | 2 | N/A |
-| 3.1 | Sharedパッケージ基盤構築 | ►&nbsp;in-progress | -            | None | N/A |
-| 3.2 | 認証関連スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.3 | API管理スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.4 | 使用量・課金スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.5 | 学習コンテンツスキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.6 | LLM統合スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.7 | x402プロトコルスキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
-| 3.8 | 統合テストスイート構築 | ○&nbsp;pending | -            | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | N/A |
-| 4 | Hono + x402バックエンド実装 | ○&nbsp;pending | high | 3 | N/A |
+| 3 | 共有型定義・バリデーションスキーマ | ✓&nbsp;done | high | 2 | N/A |
+| 3.1 | Sharedパッケージ基盤構築 | ✓&nbsp;done | -            | None | N/A |
+| 3.2 | 認証関連スキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.3 | API管理スキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.4 | 使用量・課金スキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.5 | 学習コンテンツスキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.6 | LLM統合スキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.7 | x402プロトコルスキーマ実装 | ✓&nbsp;done | -            | 3.1 | N/A |
+| 3.8 | 統合テストスイート構築 | ✓&nbsp;done | -            | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | N/A |
+| 4 | Hono + x402バックエンド実装 | ►&nbsp;in-progress | high | 3 | N/A |
+| 4.1 | バックエンドパッケージセットアップ | ►&nbsp;in-progress | -            | None | N/A |
+| 4.2 | x402プロトコル統合 | ○&nbsp;pending | -            | 4.1 | N/A |
+| 4.3 | JWT認証ミドルウェア | ○&nbsp;pending | -            | 4.1 | N/A |
+| 4.4 | ユーザー管理API | ○&nbsp;pending | -            | 4.3 | N/A |
+| 4.5 | API生成エンドポイント | ○&nbsp;pending | -            | 4.3 | N/A |
+| 4.6 | 動的ルート管理 | ○&nbsp;pending | -            | 4.2, 4.5 | N/A |
+| 4.7 | Service Bindings設定 | ○&nbsp;pending | -            | 4.1 | N/A |
+| 4.8 | Wrangler設定 | ○&nbsp;pending | -            | 4.7 | N/A |
+| 4.9 | エラーハンドリング・モニタリング | ○&nbsp;pending | -            | 4.4, 4.5, 4.6 | N/A |
 | 5 | Next.js学習プラットフォーム構築 | ○&nbsp;pending | high | 4 | N/A |
 | 6 | LLM統合・自然言語API生成エンジン | ○&nbsp;pending | medium | 5 | N/A |
 | 7 | x402プロトコル統合・ブロックチェーン接続 | ○&nbsp;pending | medium | 6 | N/A |
@@ -139,6 +148,9 @@ MIT
 
 > 📋 **End of Taskmaster Export** - Tasks are synced from your project using the `sync-readme` command.
 <!-- TASKMASTER_EXPORT_END -->
+
+
+
 
 
 
