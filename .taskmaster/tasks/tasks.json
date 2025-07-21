@@ -283,7 +283,7 @@
               "4.3"
             ],
             "details": "Zodバリデーション付きユーザー登録用POST /internal/auth/registerを実装。JWTトークン生成付きPOST /internal/auth/loginを作成。ユーザーデータ取得用GET /internal/auth/profileを追加。更新用PUT /internal/auth/profileを実装。パスワードリセット機能を追加。",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "ユーザー登録フロー、認証情報でのログイン、プロフィールCRUD操作、パスワードリセットワークフローをテスト"
           },
           {
@@ -294,7 +294,7 @@
               "4.3"
             ],
             "details": "API仕様提出用POST /internal/generator/createを実装。ユーザーの生成API用GET /internal/generator/listを追加。特定API詳細用GET /internal/generator/:idを作成。API削除用DELETE /internal/generator/:idを実装。API仕様のバリデーションを追加。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "自然言語入力からのAPI作成、ユーザーAPI一覧、API詳細取得、削除許可をテスト"
           },
           {
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T06:28:41.041Z",
+      "updated": "2025-07-21T09:48:10.452Z",
       "description": "Tasks for master context"
     }
   }
