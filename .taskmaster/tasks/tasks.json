@@ -250,7 +250,7 @@
             "description": "TypeScript、Honoフレームワーク、Cloudflare Workers設定でapps/backendパッケージ構造を作成",
             "dependencies": [],
             "details": "Hono、@cloudflare/workers-types、wrangler依存関係でpackage.jsonを初期化。Workers環境用のtsconfig.jsonを設定。基本的なHonoアプリ構造でsrc/index.tsエントリーポイントを作成。ローカルテスト用の開発スクリプトを設定。",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "パッケージインストール、TypeScriptコンパイル、ローカルwrangler dev環境での基本Honoサーバー起動を検証"
           },
           {
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T05:11:09.142Z",
+      "updated": "2025-07-21T05:36:40.467Z",
       "description": "Tasks for master context"
     }
   }

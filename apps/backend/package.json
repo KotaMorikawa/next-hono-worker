@@ -1,0 +1,27 @@
+{
+  "name": "@x402-lab/backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hono + x402 API backend for x402 Learning Lab",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy --minify",
+    "preview": "wrangler dev --remote",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "lint": "echo 'Skipping package-level lint - use root lint command'",
+    "lint:fix": "echo 'Skipping package-level lint - use root lint command'",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "hono": "^4.8.5"
+  },
+  "devDependencies": {
+    "wrangler": "^4.4.0",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.1"
+  }
+}
