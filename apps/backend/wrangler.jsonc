@@ -10,13 +10,21 @@
     "NODE_ENV": "development",
     "JWT_SECRET": "dev-secret-key-change-in-production",
     "X402_WALLET_ADDRESS": "0x1234567890123456789012345678901234567890",
-    "FRONTEND_URL": "http://localhost:3000"
+    "FRONTEND_URL": "http://localhost:3000",
+    "API_VERSION": "v1",
+    "MAX_REQUEST_SIZE": "10485760",
+    "LOG_LEVEL": "info"
   },
   "kv_namespaces": [
     {
       "binding": "CACHE",
       "id": "your-kv-namespace-id",
       "preview_id": "your-preview-kv-namespace-id"
+    },
+    {
+      "binding": "DYNAMIC_ROUTES",
+      "id": "your-dynamic-routes-kv-id",
+      "preview_id": "your-dynamic-routes-preview-id"
     }
   ],
   "r2_buckets": [
@@ -24,6 +32,11 @@
       "binding": "STORAGE",
       "bucket_name": "x402-lab-storage",
       "preview_bucket_name": "x402-lab-storage-preview"
+    },
+    {
+      "binding": "API_ASSETS",
+      "bucket_name": "x402-lab-api-assets",
+      "preview_bucket_name": "x402-lab-api-assets-preview"
     }
   ],
   "hyperdrive": [
@@ -31,6 +44,161 @@
       "binding": "HYPERDRIVE",
       "id": "your-hyperdrive-id",
       "localConnectionString": "postgresql://postgres:password@localhost:5432/x402_lab"
+    }
+  ],
+  "services": [
+    {
+      "binding": "BACKEND",
+      "service": "x402-lab-backend"
+    }
+  ],
+  "env": {
+    "development": {
+      "vars": {
+        "NODE_ENV": "development",
+        "JWT_SECRET": "dev-jwt-secret-change-in-production",
+        "X402_WALLET_ADDRESS": "0x0000000000000000000000000000000000000000",
+        "FRONTEND_URL": "http://localhost:3000",
+        "API_VERSION": "v1",
+        "MAX_REQUEST_SIZE": "10485760",
+        "LOG_LEVEL": "debug",
+        "GEMINI_API_KEY": "your-gemini-api-key-here"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "your-dev-kv-namespace-id",
+          "preview_id": "your-dev-kv-namespace-id"
+        },
+        {
+          "binding": "DYNAMIC_ROUTES",
+          "id": "your-dev-dynamic-routes-kv-id",
+          "preview_id": "your-dev-dynamic-routes-kv-id"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "STORAGE",
+          "bucket_name": "x402-lab-storage-dev",
+          "preview_bucket_name": "x402-lab-storage-dev"
+        },
+        {
+          "binding": "API_ASSETS",
+          "bucket_name": "x402-lab-api-assets-dev",
+          "preview_bucket_name": "x402-lab-api-assets-dev"
+        }
+      ],
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "your-dev-hyperdrive-id",
+          "localConnectionString": "postgresql://postgres:password@localhost:5432/x402_lab_dev"
+        }
+      ],
+      "services": [
+        {
+          "binding": "BACKEND",
+          "service": "x402-lab-backend"
+        }
+      ]
+    },
+    "staging": {
+      "vars": {
+        "NODE_ENV": "staging",
+        "JWT_SECRET": "staging-jwt-secret-change-in-production",
+        "X402_WALLET_ADDRESS": "0x0000000000000000000000000000000000000000",
+        "FRONTEND_URL": "https://x402-lab-staging.pages.dev",
+        "API_VERSION": "v1",
+        "MAX_REQUEST_SIZE": "10485760",
+        "LOG_LEVEL": "info",
+        "GEMINI_API_KEY": "your-gemini-api-key-here"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "your-staging-kv-namespace-id"
+        },
+        {
+          "binding": "DYNAMIC_ROUTES",
+          "id": "your-staging-dynamic-routes-kv-id"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "STORAGE",
+          "bucket_name": "x402-lab-storage-staging",
+          "preview_bucket_name": "x402-lab-storage-staging"
+        },
+        {
+          "binding": "API_ASSETS",
+          "bucket_name": "x402-lab-api-assets-staging",
+          "preview_bucket_name": "x402-lab-api-assets-staging"
+        }
+      ],
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "your-staging-hyperdrive-id"
+        }
+      ],
+      "services": [
+        {
+          "binding": "BACKEND",
+          "service": "x402-lab-backend"
+        }
+      ]
+    },
+    "production": {
+      "vars": {
+        "NODE_ENV": "production",
+        "JWT_SECRET": "production-jwt-secret-change-in-production",
+        "X402_WALLET_ADDRESS": "0x0000000000000000000000000000000000000000",
+        "FRONTEND_URL": "https://x402-lab.com",
+        "API_VERSION": "v1",
+        "MAX_REQUEST_SIZE": "10485760",
+        "LOG_LEVEL": "warn",
+        "GEMINI_API_KEY": "your-gemini-api-key-here"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "your-production-kv-namespace-id"
+        },
+        {
+          "binding": "DYNAMIC_ROUTES",
+          "id": "your-production-dynamic-routes-kv-id"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "STORAGE",
+          "bucket_name": "x402-lab-storage-production",
+          "preview_bucket_name": "x402-lab-storage-production"
+        },
+        {
+          "binding": "API_ASSETS",
+          "bucket_name": "x402-lab-api-assets-production",
+          "preview_bucket_name": "x402-lab-api-assets-production"
+        }
+      ],
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "your-production-hyperdrive-id"
+        }
+      ],
+      "services": [
+        {
+          "binding": "BACKEND",
+          "service": "x402-lab-backend"
+        }
+      ]
+    }
+  },
+  "routes": [
+    {
+      "pattern": "api.x402-lab.com/*",
+      "zone_name": "x402-lab.com"
     }
   ]
 }

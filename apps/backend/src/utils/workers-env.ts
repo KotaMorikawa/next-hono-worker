@@ -67,7 +67,7 @@ export function getEnvVar(key: keyof WorkersEnv): string | undefined {
   ) {
     const value = (globalThis as Record<string, unknown>)[key];
     // 文字列の環境変数のみ返す
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       return value;
     }
   }
@@ -89,7 +89,8 @@ export function isWorkersEnvironment(): boolean {
     typeof globalThis !== "undefined" &&
     "caches" in globalThis &&
     "crypto" in globalThis &&
-    typeof (globalThis as unknown as { fetch?: () => unknown }).fetch === "function"
+    typeof (globalThis as unknown as { fetch?: () => unknown }).fetch ===
+      "function"
   );
 }
 

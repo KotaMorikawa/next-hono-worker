@@ -5,6 +5,7 @@ import { type JwtPayload, JwtUtils } from "../utils/jwt";
 declare module "hono" {
   interface ContextVariableMap {
     user: JwtPayload;
+    requestId: string;
   }
 }
 

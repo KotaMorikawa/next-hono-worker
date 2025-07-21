@@ -111,9 +111,25 @@ declare global {
 
   // Cloudflare Workers環境のバインディング
   interface CloudflareBindings {
-    DYNAMIC_ROUTES_KV?: KVNamespace;
-    ASSETS_R2?: R2Bucket;
-    DATABASE_HYPERDRIVE?: Hyperdrive;
+    // KV Namespaces
+    CACHE?: KVNamespace;
+    DYNAMIC_ROUTES?: KVNamespace;
+    
+    // R2 Buckets
+    STORAGE?: R2Bucket;
+    API_ASSETS?: R2Bucket;
+    
+    // Hyperdrive Database
+    HYPERDRIVE?: Hyperdrive;
+    
+    // Service Bindings
+    BACKEND?: Fetcher;
+  }
+
+  // Service Binding用のFetcher型
+  interface Fetcher {
+    fetch(request: Request): Promise<Response>;
+    fetch(url: string, init?: RequestInit): Promise<Response>;
   }
 
   // Workers環境のグローバル変数
