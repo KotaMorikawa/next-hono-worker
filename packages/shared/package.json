@@ -36,7 +36,10 @@
     "dev": "tsup --watch",
     "lint": "echo 'Skipping package-level lint - use root lint command'",
     "lint:fix": "echo 'Skipping package-level lint - use root lint command'",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "zod": "^3.23.8"
@@ -44,7 +47,9 @@
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
     "@repo/tsconfig": "file:../tsconfig",
+    "@vitest/coverage-v8": "^2.0.0",
     "tsup": "^8.1.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.0"
   }
 }
