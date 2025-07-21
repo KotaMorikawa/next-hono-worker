@@ -29,7 +29,7 @@ describe('アプリケーション統合テスト - JWT認証', () => {
       }
       expect(data.message).toBe('x402 Learning Lab API')
       expect(data.endpoints.authenticated).toContain('/auth/profile')
-      expect(data.endpoints.authenticated).toContain('/internal/user-stats')
+      expect(data.endpoints.authenticated).toContain('/internal/user/stats')
     })
   })
 
@@ -59,16 +59,16 @@ describe('アプリケーション統合テスト - JWT認証', () => {
       expect(data.user.email).toBe(mockPayload.email)
     })
 
-    it('/internal/user-stats に認証なしでアクセスすると401を返す', async () => {
-      const res = await app.request('/internal/user-stats')
+    it('/internal/user/stats に認証なしでアクセスすると401を返す', async () => {
+      const res = await app.request('/internal/user/stats')
       
       expect(res.status).toBe(401)
       const data = await res.json() as { error: string }
       expect(data.error).toBe('Authorization header is required')
     })
 
-    it('/internal/user-stats に有効なJWTでアクセスできる', async () => {
-      const res = await app.request('/internal/user-stats', {
+    it('/internal/user/stats に有効なJWTでアクセスできる', async () => {
+      const res = await app.request('/internal/user/stats', {
         headers: {
           'Authorization': `Bearer ${validToken}`
         }

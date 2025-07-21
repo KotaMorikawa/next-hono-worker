@@ -1,14 +1,22 @@
 import { Hono } from 'hono'
 import { paymentMiddleware } from 'x402-hono'
 import { jwtAuth } from './middleware/auth'
+import { authRoutes } from './routes/auth'
 
 const app = new Hono()
 
 // JWT認証ミドルウェア設定
 // TODO: Replace with environment variable
 const JWT_SECRET = process.env.JWT_SECRET || 'development-jwt-secret-key'
+
+// 認証が必要なルート（register/loginは除く）
+app.use('/internal/auth/profile', jwtAuth({ secretKey: JWT_SECRET }))
 app.use('/auth/*', jwtAuth({ secretKey: JWT_SECRET }))
-app.use('/internal/*', jwtAuth({ secretKey: JWT_SECRET }))
+app.use('/internal/user/*', jwtAuth({ secretKey: JWT_SECRET }))
+app.use('/internal/generator/*', jwtAuth({ secretKey: JWT_SECRET }))
+
+// 認証関連ルート（register/loginは認証不要、profileは認証必要）
+app.route('/internal/auth', authRoutes)
 
 // x402ミドルウェア設定
 // Base SepoliaネットワークでUSDC決済を設定
@@ -34,8 +42,9 @@ app.get('/', (c) => {
     version: '1.0.0',
     endpoints: {
       free: ['/'],
+      auth: ['/internal/auth/register', '/internal/auth/login'],
       protected: ['/protected/demo', '/protected/weather'],
-      authenticated: ['/auth/profile', '/internal/user-stats']
+      authenticated: ['/auth/profile', '/internal/auth/profile', '/internal/user/stats']
     }
   })
 })
@@ -79,7 +88,7 @@ app.get('/auth/profile', (c) => {
   })
 })
 
-app.get('/internal/user-stats', (c) => {
+app.get('/internal/user/stats', (c) => {
   const user = c.get('user')
   return c.json({
     message: 'Internal user statistics',

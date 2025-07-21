@@ -47,7 +47,7 @@ export function jwtAuth(options: JwtAuthOptions): MiddlewareHandler {
       // 次のミドルウェアまたはハンドラーに進む
       await next()
       
-    } catch (error) {
+    } catch (_error) {
       // JWT検証エラーまたはその他のエラー
       return c.json(
         { error: 'Invalid or expired token' },

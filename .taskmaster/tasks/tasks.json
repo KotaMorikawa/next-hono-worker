@@ -272,7 +272,7 @@
               "4.1"
             ],
             "details": "Workers crypto APIを使用してJWT生成・検証ユーティリティを作成。ルート保護のための認証ミドルウェアを実装。リフレッシュトークンメカニズムを設定。CORSとセキュリティヘッダーを設定。トークン期限切れと更新を処理。",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "JWT生成・検証、保護されたルートアクセス、トークン期限切れ処理、リフレッシュトークンフローをテスト"
           },
           {
@@ -283,7 +283,7 @@
               "4.3"
             ],
             "details": "Zodバリデーション付きユーザー登録用POST /internal/auth/registerを実装。JWTトークン生成付きPOST /internal/auth/loginを作成。ユーザーデータ取得用GET /internal/auth/profileを追加。更新用PUT /internal/auth/profileを実装。パスワードリセット機能を追加。",
-            "status": "pending",
+            "status": "in-progress",
             "testStrategy": "ユーザー登録フロー、認証情報でのログイン、プロフィールCRUD操作、パスワードリセットワークフローをテスト"
           },
           {
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T06:13:19.609Z",
+      "updated": "2025-07-21T06:28:41.041Z",
       "description": "Tasks for master context"
     }
   }

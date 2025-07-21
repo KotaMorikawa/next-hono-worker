@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import { JwtUtils } from '../utils/jwt'
 import { jwtAuth } from '../middleware/auth'
