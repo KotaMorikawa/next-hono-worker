@@ -68,7 +68,7 @@
         "dependencies": [
           1
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -87,7 +87,7 @@
               "2.1"
             ],
             "details": "src/schema/users.ts に users テーブル（id, email, name, wallet_address, created_at, updated_at）を定義。src/schema/organizations.ts に organizations テーブル（id, name, owner_id, created_at）を定義。適切なインデックスと制約を設定",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "スキーマ定義の型チェック、外部キー制約の整合性確認、インデックス設定の妥当性検証"
           },
           {
@@ -99,7 +99,7 @@
               "2.2"
             ],
             "details": "api_keys テーブル（id, user_id, key_hash, name, created_at, expires_at）、generated_apis テーブル（id, user_id, name, description, code, endpoint, created_at）、api_usage テーブル（id, api_id, timestamp, request_count, response_time）、billing_records テーブル（id, user_id, amount, currency, transaction_hash）を定義",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "リレーション整合性テスト、カスケード削除動作確認、使用量集計クエリのパフォーマンステスト"
           },
           {
@@ -111,7 +111,7 @@
               "2.3"
             ],
             "details": "learning_progress テーブル（id, user_id, lesson_id, status, started_at, completed_at）、tutorial_completion テーブル（id, user_id, tutorial_id, completion_percentage, last_accessed）を定義。drizzle-kit generate でマイグレーションファイルを生成。初期データシーダーを作成",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "マイグレーション実行テスト、ロールバック動作確認、初期データ投入テスト、スキーマバージョン管理確認"
           },
           {
@@ -122,7 +122,7 @@
               "2.4"
             ],
             "details": "src/client.ts で開発環境（ローカル PostgreSQL）と本番環境（Hyperdrive 経由）の接続を環境変数で切り替え。src/index.ts ですべてのスキーマと型をエクスポート。Drizzle クエリビルダーのラッパー関数を提供。接続プール設定の最適化",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "接続プールのパフォーマンステスト、Hyperdrive 接続確認、型推論の正確性検証、トランザクション動作テスト"
           }
         ]
@@ -234,7 +234,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T02:12:02.926Z",
+      "updated": "2025-07-21T04:43:13.546Z",
       "description": "Tasks for master context"
     }
   }

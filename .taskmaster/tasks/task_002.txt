@@ -18,19 +18,19 @@
 マイグレーション実行テスト、基本CRUD操作テスト、制約違反テスト、接続プールテスト
 
 # Subtasks:
-## 1. packages/db パッケージ初期化 [in-progress]
+## 1. packages/db パッケージ初期化 [done]
 ### Dependencies: None
 ### Description: Drizzle ORM と PostgreSQL 用のデータベースパッケージ基盤を作成
 ### Details:
 packages/db ディレクトリを作成し、package.json を初期化。Drizzle ORM、PostgreSQL ドライバー（pg）、Drizzle Kit をインストール。TypeScript 設定とビルドスクリプトを追加。drizzle.config.ts で PostgreSQL 接続設定を定義
 
-## 2. ユーザー管理スキーマ定義 [pending]
+## 2. ユーザー管理スキーマ定義 [done]
 ### Dependencies: 2.1
 ### Description: users と organizations テーブルのスキーマを Drizzle ORM で定義
 ### Details:
 src/schema/users.ts に users テーブル（id, email, name, wallet_address, created_at, updated_at）を定義。src/schema/organizations.ts に organizations テーブル（id, name, owner_id, created_at）を定義。適切なインデックスと制約を設定
 
-## 3. API管理・使用量追跡スキーマ定義 [pending]
+## 3. API管理・使用量追跡スキーマ定義 [in-progress]
 ### Dependencies: 2.1, 2.2
 ### Description: API キー、生成 API、使用量、課金記録のテーブルスキーマを作成
 ### Details:

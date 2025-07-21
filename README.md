@@ -87,7 +87,7 @@ npm run deploy     # 本番デプロイ
 
 MIT
 <!-- TASKMASTER_EXPORT_START -->
-> 🎯 **Taskmaster Export** - 2025-07-21 01:55:26 UTC
+> 🎯 **Taskmaster Export** - 2025-07-21 04:28:43 UTC
 > 📋 Export: with subtasks • Status filter: none
 > 🔗 Powered by [Task Master](https://task-master.dev?utm_source=github-readme&utm_medium=readme-export&utm_campaign=next-hono-worker&utm_content=task-export-link)
 
@@ -100,10 +100,10 @@ MIT
 | Deferred | 0 |
 | Cancelled | 0 |
 |-|-|
-| Subtask Progress | ██████████░░░░░░░░░░ 50% |
-| Completed | 5 |
+| Subtask Progress | ██████████████░░░░░░ 70% |
+| Completed | 7 |
 | In Progress | 1 |
-| Pending | 4 |
+| Pending | 2 |
 
 
 | ID | Title | Status | Priority | Dependencies | Complexity |
@@ -115,9 +115,9 @@ MIT
 | 1.4 | 共通パッケージ作成 | ✓&nbsp;done | -            | None | N/A |
 | 1.5 | 開発環境設定とDocker Compose構築 | ✓&nbsp;done | -            | None | N/A |
 | 2 | データベーススキーマ設計・構築 | ►&nbsp;in-progress | high | 1 | N/A |
-| 2.1 | packages/db パッケージ初期化 | ►&nbsp;in-progress | -            | None | N/A |
-| 2.2 | ユーザー管理スキーマ定義 | ○&nbsp;pending | -            | 2.1 | N/A |
-| 2.3 | API管理・使用量追跡スキーマ定義 | ○&nbsp;pending | -            | 2.1, 2.2 | N/A |
+| 2.1 | packages/db パッケージ初期化 | ✓&nbsp;done | -            | None | N/A |
+| 2.2 | ユーザー管理スキーマ定義 | ✓&nbsp;done | -            | 2.1 | N/A |
+| 2.3 | API管理・使用量追跡スキーマ定義 | ►&nbsp;in-progress | -            | 2.1, 2.2 | N/A |
 | 2.4 | 学習進捗管理スキーマとマイグレーション | ○&nbsp;pending | -            | 2.2, 2.3 | N/A |
 | 2.5 | データベース接続層とエクスポート設定 | ○&nbsp;pending | -            | 2.4 | N/A |
 | 3 | 共有型定義・バリデーションスキーマ | ○&nbsp;pending | high | 2 | N/A |
@@ -131,4 +131,5 @@ MIT
 
 > 📋 **End of Taskmaster Export** - Tasks are synced from your project using the `sync-readme` command.
 <!-- TASKMASTER_EXPORT_END -->
+
 
