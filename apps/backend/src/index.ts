@@ -1,7 +1,14 @@
 import { Hono } from 'hono'
 import { paymentMiddleware } from 'x402-hono'
+import { jwtAuth } from './middleware/auth'
 
 const app = new Hono()
+
+// JWT認証ミドルウェア設定
+// TODO: Replace with environment variable
+const JWT_SECRET = process.env.JWT_SECRET || 'development-jwt-secret-key'
+app.use('/auth/*', jwtAuth({ secretKey: JWT_SECRET }))
+app.use('/internal/*', jwtAuth({ secretKey: JWT_SECRET }))
 
 // x402ミドルウェア設定
 // Base SepoliaネットワークでUSDC決済を設定
@@ -27,7 +34,8 @@ app.get('/', (c) => {
     version: '1.0.0',
     endpoints: {
       free: ['/'],
-      protected: ['/protected/demo', '/protected/weather']
+      protected: ['/protected/demo', '/protected/weather'],
+      authenticated: ['/auth/profile', '/internal/user-stats']
     }
   })
 })
@@ -53,6 +61,33 @@ app.get('/protected/weather', (c) => {
     paid_data: {
       detailed_forecast: '5-day premium weather forecast',
       alerts: ['No severe weather expected']
+    }
+  })
+})
+
+// JWT認証が必要なエンドポイント
+app.get('/auth/profile', (c) => {
+  const user = c.get('user')
+  return c.json({
+    message: 'User profile data',
+    user: {
+      id: user.userId,
+      email: user.email,
+      organizationId: user.organizationId
+    },
+    timestamp: new Date().toISOString()
+  })
+})
+
+app.get('/internal/user-stats', (c) => {
+  const user = c.get('user')
+  return c.json({
+    message: 'Internal user statistics',
+    userId: user.userId,
+    stats: {
+      loginCount: 42,
+      lastLogin: new Date().toISOString(),
+      apiCallsToday: 15
     }
   })
 })
