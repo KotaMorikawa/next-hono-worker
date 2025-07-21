@@ -87,23 +87,23 @@ npm run deploy     # 本番デプロイ
 
 MIT
 <!-- TASKMASTER_EXPORT_START -->
-> 🎯 **Taskmaster Export** - 2025-07-21 04:28:43 UTC
+> 🎯 **Taskmaster Export** - 2025-07-21 04:57:56 UTC
 > 📋 Export: with subtasks • Status filter: none
 > 🔗 Powered by [Task Master](https://task-master.dev?utm_source=github-readme&utm_medium=readme-export&utm_campaign=next-hono-worker&utm_content=task-export-link)
 
 | Project Dashboard |  |
 | :-                |:-|
-| Task Progress     | ██░░░░░░░░░░░░░░░░░░ 10% |
-| Done | 1 |
+| Task Progress     | ████░░░░░░░░░░░░░░░░ 20% |
+| Done | 2 |
 | In Progress | 1 |
-| Pending | 8 |
+| Pending | 7 |
 | Deferred | 0 |
 | Cancelled | 0 |
 |-|-|
-| Subtask Progress | ██████████████░░░░░░ 70% |
-| Completed | 7 |
+| Subtask Progress | ███████████░░░░░░░░░ 56% |
+| Completed | 10 |
 | In Progress | 1 |
-| Pending | 2 |
+| Pending | 7 |
 
 
 | ID | Title | Status | Priority | Dependencies | Complexity |
@@ -114,13 +114,21 @@ MIT
 | 1.3 | Turborepo pipeline設定 | ✓&nbsp;done | -            | None | N/A |
 | 1.4 | 共通パッケージ作成 | ✓&nbsp;done | -            | None | N/A |
 | 1.5 | 開発環境設定とDocker Compose構築 | ✓&nbsp;done | -            | None | N/A |
-| 2 | データベーススキーマ設計・構築 | ►&nbsp;in-progress | high | 1 | N/A |
+| 2 | データベーススキーマ設計・構築 | ✓&nbsp;done | high | 1 | N/A |
 | 2.1 | packages/db パッケージ初期化 | ✓&nbsp;done | -            | None | N/A |
 | 2.2 | ユーザー管理スキーマ定義 | ✓&nbsp;done | -            | 2.1 | N/A |
-| 2.3 | API管理・使用量追跡スキーマ定義 | ►&nbsp;in-progress | -            | 2.1, 2.2 | N/A |
-| 2.4 | 学習進捗管理スキーマとマイグレーション | ○&nbsp;pending | -            | 2.2, 2.3 | N/A |
-| 2.5 | データベース接続層とエクスポート設定 | ○&nbsp;pending | -            | 2.4 | N/A |
-| 3 | 共有型定義・バリデーションスキーマ | ○&nbsp;pending | high | 2 | N/A |
+| 2.3 | API管理・使用量追跡スキーマ定義 | ✓&nbsp;done | -            | 2.1, 2.2 | N/A |
+| 2.4 | 学習進捗管理スキーマとマイグレーション | ✓&nbsp;done | -            | 2.2, 2.3 | N/A |
+| 2.5 | データベース接続層とエクスポート設定 | ✓&nbsp;done | -            | 2.4 | N/A |
+| 3 | 共有型定義・バリデーションスキーマ | ►&nbsp;in-progress | high | 2 | N/A |
+| 3.1 | Sharedパッケージ基盤構築 | ►&nbsp;in-progress | -            | None | N/A |
+| 3.2 | 認証関連スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.3 | API管理スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.4 | 使用量・課金スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.5 | 学習コンテンツスキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.6 | LLM統合スキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.7 | x402プロトコルスキーマ実装 | ○&nbsp;pending | -            | 3.1 | N/A |
+| 3.8 | 統合テストスイート構築 | ○&nbsp;pending | -            | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | N/A |
 | 4 | Hono + x402バックエンド実装 | ○&nbsp;pending | high | 3 | N/A |
 | 5 | Next.js学習プラットフォーム構築 | ○&nbsp;pending | high | 4 | N/A |
 | 6 | LLM統合・自然言語API生成エンジン | ○&nbsp;pending | medium | 5 | N/A |
@@ -131,5 +139,6 @@ MIT
 
 > 📋 **End of Taskmaster Export** - Tasks are synced from your project using the `sync-readme` command.
 <!-- TASKMASTER_EXPORT_END -->
+
 
 

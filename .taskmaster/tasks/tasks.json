@@ -137,8 +137,100 @@
         "dependencies": [
           2
         ],
-        "status": "pending",
-        "subtasks": []
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Sharedパッケージ基盤構築",
+            "description": "packages/shared/パッケージの初期設定とTypeScript strict mode環境構築",
+            "dependencies": [],
+            "details": "packages/shared/ディレクトリ作成、package.json設定（name: @repo/shared）、tsconfig.json作成（strict: true、strictNullChecks: true等）、Zodライブラリインストール、エクスポート構造設計（index.ts）",
+            "status": "done",
+            "testStrategy": "パッケージビルドテスト、TypeScript設定検証、エクスポート確認テスト"
+          },
+          {
+            "id": 2,
+            "title": "認証関連スキーマ実装",
+            "description": "ユーザー認証に必要なloginSchemaとregisterSchemaのZodスキーマ定義",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/auth.ts作成、loginSchema（email, password）、registerSchema（email, password, name, organizationName）、パスワード強度バリデーション、メールフォーマット検証、型推論用type定義エクスポート",
+            "status": "done",
+            "testStrategy": "有効/無効データバリデーションテスト、型推論テスト、エラーメッセージ検証"
+          },
+          {
+            "id": 3,
+            "title": "API管理スキーマ実装",
+            "description": "API Key管理とAPI仕様定義のためのcreateApiKeySchemaとapiSpecificationSchema実装",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/api-management.ts作成、createApiKeySchema（name, permissions, expiresAt）、apiSpecificationSchema（name, description, naturalLanguageInput, generatedCode, endpoint, method, headers, params）、権限レベル定義（enum）",
+            "status": "done",
+            "testStrategy": "API仕様バリデーションテスト、権限スコープテスト、日付バリデーションテスト"
+          },
+          {
+            "id": 4,
+            "title": "使用量・課金スキーマ実装",
+            "description": "API使用量追跡とビリング管理のためのusageStatsSchemaとbillingSchema定義",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/usage-billing.ts作成、usageStatsSchema（apiId, timestamp, requestCount, responseTime, errorCount）、billingSchema（userId, period, totalCost, breakdowns, paymentStatus）、集計ロジック用ヘルパー型定義",
+            "status": "done",
+            "testStrategy": "数値範囲バリデーションテスト、日付期間検証、課金計算ロジックテスト"
+          },
+          {
+            "id": 5,
+            "title": "学習コンテンツスキーマ実装",
+            "description": "チュートリアルと学習進捗管理のためのtutorialSchemaとprogressSchema構築",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/learning.ts作成、tutorialSchema（id, title, content, category, difficulty, estimatedTime, prerequisites）、progressSchema（userId, tutorialId, completedSteps, totalSteps, startedAt, completedAt, score）、難易度レベルenum定義",
+            "status": "done",
+            "testStrategy": "進捗率計算テスト、前提条件バリデーションテスト、完了状態検証"
+          },
+          {
+            "id": 6,
+            "title": "LLM統合スキーマ実装",
+            "description": "自然言語入力と生成コード管理のためのnaturalLanguageInputSchemaとgeneratedCodeSchema定義",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/llm-integration.ts作成、naturalLanguageInputSchema（userPrompt, context, constraints, preferredLanguage）、generatedCodeSchema（sourcePrompt, code, language, framework, dependencies, executionTime, llmProvider）、プロンプト長制限バリデーション",
+            "status": "done",
+            "testStrategy": "プロンプト長バリデーションテスト、コード言語検証、依存関係フォーマットテスト"
+          },
+          {
+            "id": 7,
+            "title": "x402プロトコルスキーマ実装",
+            "description": "x402決済設定管理のためのpaymentConfigSchemaと関連型定義",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "schemas/x402-protocol.ts作成、paymentConfigSchema（walletAddress, priceInUSDC, chainId, paymentMethod, transactionHash）、Base Sepoliaチェーン専用バリデーション、USDCアドレス検証、金額精度バリデーション（小数点6桁）",
+            "status": "done",
+            "testStrategy": "ウォレットアドレス形式テスト、金額精度テスト、チェーンID検証テスト"
+          },
+          {
+            "id": 8,
+            "title": "統合テストスイート構築",
+            "description": "全スキーマの相互運用性と型安全性を検証する包括的テストスイート実装",
+            "dependencies": [
+              "3.2",
+              "3.3",
+              "3.4",
+              "3.5",
+              "3.6",
+              "3.7"
+            ],
+            "details": "tests/integration/ディレクトリ作成、スキーマ間参照テスト、型推論一貫性テスト、Zodエラーハンドリング統合テスト、実際のユースケースシナリオテスト、パフォーマンスベンチマーク実装",
+            "status": "done",
+            "testStrategy": "エンドツーエンドバリデーションテスト、型安全性回帰テスト、メモリ使用量測定"
+          }
+        ]
       },
       {
         "id": 4,
@@ -234,7 +326,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T04:43:13.546Z",
+      "updated": "2025-07-21T05:08:01.778Z",
       "description": "Tasks for master context"
     }
   }
