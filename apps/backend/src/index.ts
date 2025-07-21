@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { paymentMiddleware } from 'x402-hono'
 import { jwtAuth } from './middleware/auth'
 import { authRoutes } from './routes/auth'
+import { generatorRoutes } from './routes/generator'
 
 const app = new Hono()
 
@@ -17,6 +18,9 @@ app.use('/internal/generator/*', jwtAuth({ secretKey: JWT_SECRET }))
 
 // 認証関連ルート（register/loginは認証不要、profileは認証必要）
 app.route('/internal/auth', authRoutes)
+
+// API生成関連ルート（認証必要）
+app.route('/internal/generator', generatorRoutes)
 
 // x402ミドルウェア設定
 // Base SepoliaネットワークでUSDC決済を設定
@@ -44,7 +48,7 @@ app.get('/', (c) => {
       free: ['/'],
       auth: ['/internal/auth/register', '/internal/auth/login'],
       protected: ['/protected/demo', '/protected/weather'],
-      authenticated: ['/auth/profile', '/internal/auth/profile', '/internal/user/stats']
+      authenticated: ['/auth/profile', '/internal/auth/profile', '/internal/user/stats', '/internal/generator/*']
     }
   })
 })
