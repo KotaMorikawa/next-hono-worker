@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "description": "Hono + x402 API backend for x402 Learning Lab",
   "scripts": {
     "dev": "wrangler dev",
