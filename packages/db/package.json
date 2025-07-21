@@ -24,6 +24,26 @@
       "types": "./dist/migrations.d.ts",
       "import": "./dist/migrations.mjs",
       "require": "./dist/migrations.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.mjs",
+      "require": "./dist/types.js"
+    },
+    "./validation": {
+      "types": "./dist/validation.d.ts",
+      "import": "./dist/validation.mjs",
+      "require": "./dist/validation.js"
+    },
+    "./operations": {
+      "types": "./dist/operations.d.ts",
+      "import": "./dist/operations.mjs",
+      "require": "./dist/operations.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.js"
     }
   },
   "scripts": {
@@ -34,7 +54,8 @@
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx src/seed.ts"
   },
   "dependencies": {
     "@repo/shared": "file:../shared",
@@ -47,6 +68,7 @@
     "@types/pg": "^8.11.6",
     "drizzle-kit": "^0.24.0",
     "tsup": "^8.1.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.5.3"
   }
 }

@@ -38,7 +38,7 @@
       "recommended": true,
       "suspicious": {
         "noExplicitAny": "warn",
-        "noConsole": "warn"
+        "noConsole": "off"
       },
       "style": {
         "useImportType": "error",
@@ -90,15 +90,7 @@
         "apps/*/test/**",
         "packages/*/test/**",
         "**/*.test.{js,ts,tsx}"
-      ],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noExplicitAny": "off",
-            "noConsole": "off"
-          }
-        }
-      }
+      ]
     }
   ]
 }
