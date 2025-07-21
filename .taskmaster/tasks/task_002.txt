@@ -1,6 +1,6 @@
 # Task ID: 2
 # Title: データベーススキーマ設計・構築
-# Status: pending
+# Status: in-progress
 # Dependencies: 1
 # Priority: high
 # Description: PostgreSQL + Drizzle ORM によるデータベース基盤構築
@@ -16,3 +16,35 @@
 
 # Test Strategy:
 マイグレーション実行テスト、基本CRUD操作テスト、制約違反テスト、接続プールテスト
+
+# Subtasks:
+## 1. packages/db パッケージ初期化 [in-progress]
+### Dependencies: None
+### Description: Drizzle ORM と PostgreSQL 用のデータベースパッケージ基盤を作成
+### Details:
+packages/db ディレクトリを作成し、package.json を初期化。Drizzle ORM、PostgreSQL ドライバー（pg）、Drizzle Kit をインストール。TypeScript 設定とビルドスクリプトを追加。drizzle.config.ts で PostgreSQL 接続設定を定義
+
+## 2. ユーザー管理スキーマ定義 [pending]
+### Dependencies: 2.1
+### Description: users と organizations テーブルのスキーマを Drizzle ORM で定義
+### Details:
+src/schema/users.ts に users テーブル（id, email, name, wallet_address, created_at, updated_at）を定義。src/schema/organizations.ts に organizations テーブル（id, name, owner_id, created_at）を定義。適切なインデックスと制約を設定
+
+## 3. API管理・使用量追跡スキーマ定義 [pending]
+### Dependencies: 2.1, 2.2
+### Description: API キー、生成 API、使用量、課金記録のテーブルスキーマを作成
+### Details:
+api_keys テーブル（id, user_id, key_hash, name, created_at, expires_at）、generated_apis テーブル（id, user_id, name, description, code, endpoint, created_at）、api_usage テーブル（id, api_id, timestamp, request_count, response_time）、billing_records テーブル（id, user_id, amount, currency, transaction_hash）を定義
+
+## 4. 学習進捗管理スキーマとマイグレーション [pending]
+### Dependencies: 2.2, 2.3
+### Description: 学習進捗とチュートリアル完了状況のテーブル定義とマイグレーションファイル作成
+### Details:
+learning_progress テーブル（id, user_id, lesson_id, status, started_at, completed_at）、tutorial_completion テーブル（id, user_id, tutorial_id, completion_percentage, last_accessed）を定義。drizzle-kit generate でマイグレーションファイルを生成。初期データシーダーを作成
+
+## 5. データベース接続層とエクスポート設定 [pending]
+### Dependencies: 2.4
+### Description: Hyperdrive 対応の接続設定と型安全なクライアントエクスポート
+### Details:
+src/client.ts で開発環境（ローカル PostgreSQL）と本番環境（Hyperdrive 経由）の接続を環境変数で切り替え。src/index.ts ですべてのスキーマと型をエクスポート。Drizzle クエリビルダーのラッパー関数を提供。接続プール設定の最適化
+

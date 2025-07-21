@@ -361,3 +361,37 @@ export const simulationActionsRelations = relations(
     }),
   }),
 );
+
+// Type inference from Drizzle schema (for database operations)
+export type UserDB = typeof users.$inferSelect;
+export type NewUserDB = typeof users.$inferInsert;
+
+export type OrganizationDB = typeof organizations.$inferSelect;
+export type NewOrganizationDB = typeof organizations.$inferInsert;
+
+export type ApiKeyDB = typeof apiKeys.$inferSelect;
+export type NewApiKeyDB = typeof apiKeys.$inferInsert;
+
+export type GeneratedApiDB = typeof generatedApis.$inferSelect;
+export type NewGeneratedApiDB = typeof generatedApis.$inferInsert;
+
+export type ApiUsageDB = typeof apiUsage.$inferSelect;
+export type NewApiUsageDB = typeof apiUsage.$inferInsert;
+
+export type BillingRecordDB = typeof billingRecords.$inferSelect;
+export type NewBillingRecordDB = typeof billingRecords.$inferInsert;
+
+export type TutorialDB = typeof tutorials.$inferSelect;
+export type NewTutorialDB = typeof tutorials.$inferInsert;
+
+export type LearningProgressDB = typeof learningProgress.$inferSelect;
+export type NewLearningProgressDB = typeof learningProgress.$inferInsert;
+
+export type PaymentRequestDB = typeof paymentRequests.$inferSelect;
+export type NewPaymentRequestDB = typeof paymentRequests.$inferInsert;
+
+export type SimulationDB = typeof simulations.$inferSelect;
+export type NewSimulationDB = typeof simulations.$inferInsert;
+
+export type SimulationActionDB = typeof simulationActions.$inferSelect;
+export type NewSimulationActionDB = typeof simulationActions.$inferInsert;
