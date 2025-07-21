@@ -261,7 +261,7 @@
               "4.1"
             ],
             "details": "@coinbase/x402-honoパッケージをインストール。Base Sepolia RPCエンドポイント、USDCコントラクトアドレス、ウォレットプロバイダーでx402ミドルウェアを設定。動的価格設定用の決済設定を作成。決済失敗時のエラーハンドリングを設定。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "x402ミドルウェア初期化、Base SepoliaテストUSDCでの決済フロー、HTTP 402ステータスコードレスポンスをテスト"
           },
           {
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T05:36:40.467Z",
+      "updated": "2025-07-21T06:09:32.162Z",
       "description": "Tasks for master context"
     }
   }

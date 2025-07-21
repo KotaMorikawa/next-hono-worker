@@ -1,10 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import app from '../index'
+import type { ApiInfoResponse } from '../types/api'
 
 describe('Hono Backend', () => {
-  it('should return Hello Hono! for GET /', async () => {
+  it('should return API info for GET /', async () => {
     const res = await app.request('/')
     expect(res.status).toBe(200)
-    expect(await res.text()).toBe('Hello Hono!')
+    
+    const data = await res.json() as ApiInfoResponse
+    expect(data.message).toBe('x402 Learning Lab API')
+    expect(data.version).toBe('1.0.0')
   })
 })

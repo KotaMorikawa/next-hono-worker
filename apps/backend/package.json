@@ -17,7 +17,9 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "hono": "^4.8.5"
+    "hono": "^4.8.5",
+    "x402-hono": "^0.4.2",
+    "@coinbase/x402": "^0.4.2"
   },
   "devDependencies": {
     "wrangler": "^4.4.0",
