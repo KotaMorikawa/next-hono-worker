@@ -105,8 +105,8 @@ describe('Schema Integration Tests', () => {
 
     it('should validate usage stats', () => {
       const validStats = {
-        apiId: 'api-123e4567-e89b-12d3-a456-426614174000',
-        userId: 'user-123e4567-e89b-12d3-a456-426614174000',
+        apiId: '123e4567-e89b-12d3-a456-426614174000',
+        userId: '987fcdeb-51a2-43d7-8f9e-123456789abc',
         requestCount: 100,
         totalRevenue: '5.25',
         averageResponseTime: 250.5,

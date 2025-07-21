@@ -242,7 +242,7 @@
         "dependencies": [
           3
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -250,7 +250,7 @@
             "description": "TypeScript、Honoフレームワーク、Cloudflare Workers設定でapps/backendパッケージ構造を作成",
             "dependencies": [],
             "details": "Hono、@cloudflare/workers-types、wrangler依存関係でpackage.jsonを初期化。Workers環境用のtsconfig.jsonを設定。基本的なHonoアプリ構造でsrc/index.tsエントリーポイントを作成。ローカルテスト用の開発スクリプトを設定。",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "パッケージインストール、TypeScriptコンパイル、ローカルwrangler dev環境での基本Honoサーバー起動を検証"
           },
           {
@@ -261,7 +261,7 @@
               "4.1"
             ],
             "details": "@coinbase/x402-honoパッケージをインストール。Base Sepolia RPCエンドポイント、USDCコントラクトアドレス、ウォレットプロバイダーでx402ミドルウェアを設定。動的価格設定用の決済設定を作成。決済失敗時のエラーハンドリングを設定。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "x402ミドルウェア初期化、Base SepoliaテストUSDCでの決済フロー、HTTP 402ステータスコードレスポンスをテスト"
           },
           {
@@ -272,7 +272,7 @@
               "4.1"
             ],
             "details": "Workers crypto APIを使用してJWT生成・検証ユーティリティを作成。ルート保護のための認証ミドルウェアを実装。リフレッシュトークンメカニズムを設定。CORSとセキュリティヘッダーを設定。トークン期限切れと更新を処理。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "JWT生成・検証、保護されたルートアクセス、トークン期限切れ処理、リフレッシュトークンフローをテスト"
           },
           {
@@ -283,7 +283,7 @@
               "4.3"
             ],
             "details": "Zodバリデーション付きユーザー登録用POST /internal/auth/registerを実装。JWTトークン生成付きPOST /internal/auth/loginを作成。ユーザーデータ取得用GET /internal/auth/profileを追加。更新用PUT /internal/auth/profileを実装。パスワードリセット機能を追加。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "ユーザー登録フロー、認証情報でのログイン、プロフィールCRUD操作、パスワードリセットワークフローをテスト"
           },
           {
@@ -294,7 +294,7 @@
               "4.3"
             ],
             "details": "API仕様提出用POST /internal/generator/createを実装。ユーザーの生成API用GET /internal/generator/listを追加。特定API詳細用GET /internal/generator/:idを作成。API削除用DELETE /internal/generator/:idを実装。API仕様のバリデーションを追加。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "自然言語入力からのAPI作成、ユーザーAPI一覧、API詳細取得、削除許可をテスト"
           },
           {
@@ -306,7 +306,7 @@
               "4.5"
             ],
             "details": "永続化用Workers KVを使用したルートレジストリを作成。KVから読み込む動的ルートローダーを実装。ルートコンパイルとバリデーションを追加。サンドボックス実行環境を設定。ルートバージョニングとロールバック機能を実装。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "動的ルート登録、KV永続化、ランタイムルート読み込み、サンドボックス実行安全性をテスト"
           },
           {
@@ -317,7 +317,7 @@
               "4.1"
             ],
             "details": "wrangler.tomlでservice bindingsを設定。フロントエンド用Hono RPCインターフェースを作成。型付きAPIコントラクトを定義。リクエスト・レスポンスのシリアライゼーションを実装。開発環境バインディングを設定。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "service binding接続、RPCメソッド呼び出し、workers間の型安全性、シリアライゼーション正確性をテスト"
           },
           {
@@ -328,7 +328,7 @@
               "4.7"
             ],
             "details": "環境固有設定（開発、ステージング、本番）を設定。ルートストレージとキャッシュ用KVネームスペースを設定。D1データベースバインディングを設定。APIキーとシークレット用環境変数を追加。カスタムドメインとルートを設定。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "wrangler.toml構文検証、環境変数読み込みテスト、KVとD1バインディング検証、デプロイドライラン"
           },
           {
@@ -341,7 +341,7 @@
               "4.6"
             ],
             "details": "中央集中エラーハンドラーミドルウェアを作成。リクエストトレーシング付き構造化ログを実装。パフォーマンスモニタリングフックを追加。ユーザー・API単位のレート制限を設定。Cloudflare Analytics APIと統合。ヘルスチェックエンドポイントを作成。",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "エラーレスポンス形式、ログ出力構造、レート制限強制、ヘルスチェックレスポンスをテスト"
           }
         ]
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T05:11:09.142Z",
+      "updated": "2025-07-21T11:40:47.985Z",
       "description": "Tasks for master context"
     }
   }

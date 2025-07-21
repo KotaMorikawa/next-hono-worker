@@ -27,6 +27,7 @@ export const naturalLanguageInputSchema = z.object({
   expectedPrice: z.string().optional(),
   externalApis: z.array(z.string()).optional(),
   complexityLevel: z.enum(["simple", "medium", "complex"]).default("medium"),
+  autoDeploy: z.boolean().optional().default(true),
 });
 
 export const generatedApiSpecSchema = z.object({
