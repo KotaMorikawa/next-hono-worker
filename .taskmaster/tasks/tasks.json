@@ -242,7 +242,7 @@
         "dependencies": [
           3
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -341,7 +341,7 @@
               "4.6"
             ],
             "details": "中央集中エラーハンドラーミドルウェアを作成。リクエストトレーシング付き構造化ログを実装。パフォーマンスモニタリングフックを追加。ユーザー・API単位のレート制限を設定。Cloudflare Analytics APIと統合。ヘルスチェックエンドポイントを作成。",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "エラーレスポンス形式、ログ出力構造、レート制限強制、ヘルスチェックレスポンスをテスト"
           }
         ]
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-07-20T17:54:30.297Z",
-      "updated": "2025-07-21T10:00:33.547Z",
+      "updated": "2025-07-21T11:40:47.985Z",
       "description": "Tasks for master context"
     }
   }

@@ -1,6 +1,6 @@
 # Task ID: 4
 # Title: Hono + x402バックエンド実装
-# Status: in-progress
+# Status: done
 # Dependencies: 3
 # Priority: high
 # Description: Cloudflare Workers上でHono + x402プロトコル統合のAPI基盤構築
@@ -49,25 +49,25 @@ Zodバリデーション付きユーザー登録用POST /internal/auth/register�
 ### Details:
 API仕様提出用POST /internal/generator/createを実装。ユーザーの生成API用GET /internal/generator/listを追加。特定API詳細用GET /internal/generator/:idを作成。API削除用DELETE /internal/generator/:idを実装。API仕様のバリデーションを追加。
 
-## 6. 動的ルート管理 [pending]
+## 6. 動的ルート管理 [done]
 ### Dependencies: 4.2, 4.5
 ### Description: ユーザー生成APIのランタイム読み込みと実行を伴う動的ルート登録システムを構築
 ### Details:
 永続化用Workers KVを使用したルートレジストリを作成。KVから読み込む動的ルートローダーを実装。ルートコンパイルとバリデーションを追加。サンドボックス実行環境を設定。ルートバージョニングとロールバック機能を実装。
 
-## 7. Service Bindings設定 [pending]
+## 7. Service Bindings設定 [done]
 ### Dependencies: 4.1
 ### Description: フロントエンドとバックエンドworkers間の型安全通信のためのService Bindingsを設定
 ### Details:
 wrangler.tomlでservice bindingsを設定。フロントエンド用Hono RPCインターフェースを作成。型付きAPIコントラクトを定義。リクエスト・レスポンスのシリアライゼーションを実装。開発環境バインディングを設定。
 
-## 8. Wrangler設定 [pending]
+## 8. Wrangler設定 [done]
 ### Dependencies: 4.7
 ### Description: 環境変数、バインディング、デプロイ設定でwrangler.toml設定を完成
 ### Details:
 環境固有設定（開発、ステージング、本番）を設定。ルートストレージとキャッシュ用KVネームスペースを設定。D1データベースバインディングを設定。APIキーとシークレット用環境変数を追加。カスタムドメインとルートを設定。
 
-## 9. エラーハンドリング・モニタリング [pending]
+## 9. エラーハンドリング・モニタリング [done]
 ### Dependencies: 4.4, 4.5, 4.6
 ### Description: バックエンドのための包括的エラーハンドリング、ログシステム、モニタリング統合を実装
 ### Details:
