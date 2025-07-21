@@ -1,47 +1,51 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { LLMService } from '../services/llm-service'
-import type { NaturalLanguageInput } from '@repo/shared/api'
+import type { NaturalLanguageInput } from "@repo/shared/api";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { LLMService } from "../services/llm-service";
 
 // Gemini APIをモック化
-vi.mock('../utils/gemini-client', () => ({
+vi.mock("../utils/gemini-client", () => ({
   GeminiClient: vi.fn().mockImplementation(() => ({
-    generateCode: vi.fn()
-  }))
-}))
+    generateCode: vi.fn(),
+  })),
+}));
 
-describe('LLMService', () => {
-  let llmService: LLMService
+describe("LLMService", () => {
+  let llmService: LLMService;
   let mockGeminiClient: {
-    generateCode: ReturnType<typeof vi.fn>
-  }
+    generateCode: ReturnType<typeof vi.fn>;
+  };
 
   beforeEach(async () => {
-    vi.clearAllMocks()
-    
-    const { GeminiClient } = await import('../utils/gemini-client')
-    mockGeminiClient = {
-      generateCode: vi.fn()
-    }
-    ;(GeminiClient as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => mockGeminiClient)
-    
-    llmService = new LLMService()
-  })
+    vi.clearAllMocks();
 
-  describe('generateApiFromNaturalLanguage', () => {
-    it('有効な自然言語入力でAPI仕様を生成する', async () => {
+    const { GeminiClient } = await import("../utils/gemini-client");
+    mockGeminiClient = {
+      generateCode: vi.fn(),
+    };
+    (GeminiClient as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      () => mockGeminiClient,
+    );
+
+    llmService = new LLMService();
+  });
+
+  describe("generateApiFromNaturalLanguage", () => {
+    it("有効な自然言語入力でAPI仕様を生成する", async () => {
       // Arrange
       const input: NaturalLanguageInput = {
-        description: '天気情報を取得するAPIを作成してください',
-        category: 'data',
-        complexityLevel: 'simple'
-      }
+        description: "天気情報を取得するAPIを作成してください",
+        category: "data",
+        complexityLevel: "simple",
+        autoDeploy: true,
+      };
 
       const mockGeminiResponse = {
-        name: 'Weather Information API',
-        description: 'Provides current weather information for specified locations',
-        endpoint: '/api/weather',
-        method: 'GET',
-        price: '0.01',
+        name: "Weather Information API",
+        description:
+          "Provides current weather information for specified locations",
+        endpoint: "/api/weather",
+        method: "GET",
+        price: "0.01",
         generatedCode: `import { Hono } from 'hono'
 import { x402 } from 'x402-hono'
 
@@ -96,42 +100,45 @@ This API provides current weather information for specified locations.
 
 ## Pricing
 - Cost: $0.01 USDC per request
-- Payment via x402 protocol on Base Sepolia`
-      }
+- Payment via x402 protocol on Base Sepolia`,
+      };
 
-      mockGeminiClient.generateCode.mockResolvedValue(mockGeminiResponse)
+      mockGeminiClient.generateCode.mockResolvedValue(mockGeminiResponse);
 
       // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
+      const result = await llmService.generateApiFromNaturalLanguage(input);
 
       // Assert
-      expect(result.success).toBe(true)
-      expect(result.data).toBeDefined()
-      expect(result.data?.name).toBe('Weather Information API')
-      expect(result.data?.endpoint).toBe('/api/weather')
-      expect(result.data?.method).toBe('GET')
-      expect(result.data?.price).toBe('0.01')
-      expect(result.data?.generatedCode).toContain('x402')
-      expect(result.data?.generatedCode).toContain('Hono')
-      expect(result.data?.documentation).toContain('Weather Information API')
-    })
+      expect(result.success).toBe(true);
+      expect(result.data).toBeDefined();
+      expect(result.data?.name).toBe("Weather Information API");
+      expect(result.data?.endpoint).toBe("/api/weather");
+      expect(result.data?.method).toBe("GET");
+      expect(result.data?.price).toBe("0.01");
+      expect(result.data?.generatedCode).toContain("x402");
+      expect(result.data?.generatedCode).toContain("Hono");
+      expect(result.data?.documentation).toContain("Weather Information API");
+    });
 
-    it('複雑な統合APIリクエストを処理する', async () => {
+    it("複雑な統合APIリクエストを処理する", async () => {
       // Arrange
       const input: NaturalLanguageInput = {
-        description: 'ユーザーが投稿した画像を分析してAIが説明文を生成し、複数言語で翻訳するAPIを作成してください',
-        category: 'ai',
-        complexityLevel: 'complex',
-        externalApis: ['OpenAI Vision', 'Google Translate'],
-        expectedPrice: '0.10'
-      }
+        description:
+          "ユーザーが投稿した画像を分析してAIが説明文を生成し、複数言語で翻訳するAPIを作成してください",
+        category: "ai",
+        complexityLevel: "complex",
+        externalApis: ["OpenAI Vision", "Google Translate"],
+        expectedPrice: "0.10",
+        autoDeploy: true,
+      };
 
       const mockComplexApiResponse = {
-        name: 'AI Image Analysis & Translation API',
-        description: 'Analyzes uploaded images using AI and provides descriptions in multiple languages',
-        endpoint: '/api/image-analyze-translate',
-        method: 'POST',
-        price: '0.10',
+        name: "AI Image Analysis & Translation API",
+        description:
+          "Analyzes uploaded images using AI and provides descriptions in multiple languages",
+        endpoint: "/api/image-analyze-translate",
+        method: "POST",
+        price: "0.10",
         generatedCode: `import { Hono } from 'hono'
 import { x402 } from 'x402-hono'
 
@@ -195,117 +202,123 @@ Analyzes uploaded images using AI and provides descriptions in multiple language
 
 ## Pricing
 - Cost: $0.10 USDC per request
-- Higher cost due to external API usage`
-      }
+- Higher cost due to external API usage`,
+      };
 
-      mockGeminiClient.generateCode.mockResolvedValue(mockComplexApiResponse)
-
-      // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
-
-      // Assert
-      expect(result.success).toBe(true)
-      expect(result.data?.name).toBe('AI Image Analysis & Translation API')
-      expect(result.data?.method).toBe('POST')
-      expect(result.data?.price).toBe('0.10')
-      expect(result.data?.generatedCode).toContain('imageUrl')
-      expect(result.data?.generatedCode).toContain('targetLanguages')
-      expect(result.data?.documentation).toContain('OpenAI Vision')
-      expect(result.data?.documentation).toContain('Google Translate')
-    })
-
-    it('Geminiクライアントエラーでエラーを返す', async () => {
-      // Arrange
-      const input: NaturalLanguageInput = {
-        description: '天気情報を取得するAPIを作成してください',
-        category: 'data',
-        complexityLevel: 'simple'
-      }
-
-      mockGeminiClient.generateCode.mockRejectedValue(new Error('Gemini API rate limit exceeded'))
+      mockGeminiClient.generateCode.mockResolvedValue(mockComplexApiResponse);
 
       // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
+      const result = await llmService.generateApiFromNaturalLanguage(input);
 
       // Assert
-      expect(result.success).toBe(false)
-      expect(result.error).toBe('LLM generation failed')
-    })
+      expect(result.success).toBe(true);
+      expect(result.data?.name).toBe("AI Image Analysis & Translation API");
+      expect(result.data?.method).toBe("POST");
+      expect(result.data?.price).toBe("0.10");
+      expect(result.data?.generatedCode).toContain("imageUrl");
+      expect(result.data?.generatedCode).toContain("targetLanguages");
+      expect(result.data?.documentation).toContain("OpenAI Vision");
+      expect(result.data?.documentation).toContain("Google Translate");
+    });
 
-    it('不正なGeminiレスポンスでエラーを返す', async () => {
+    it("Geminiクライアントエラーでエラーを返す", async () => {
       // Arrange
       const input: NaturalLanguageInput = {
-        description: '天気情報を取得するAPIを作成してください',
-        category: 'data',
-        complexityLevel: 'simple'
-      }
+        description: "天気情報を取得するAPIを作成してください",
+        category: "data",
+        complexityLevel: "simple",
+        autoDeploy: true,
+      };
+
+      mockGeminiClient.generateCode.mockRejectedValue(
+        new Error("Gemini API rate limit exceeded"),
+      );
+
+      // Act
+      const result = await llmService.generateApiFromNaturalLanguage(input);
+
+      // Assert
+      expect(result.success).toBe(false);
+      expect(result.error).toBe("LLM generation failed");
+    });
+
+    it("不正なGeminiレスポンスでエラーを返す", async () => {
+      // Arrange
+      const input: NaturalLanguageInput = {
+        description: "天気情報を取得するAPIを作成してください",
+        category: "data",
+        complexityLevel: "simple",
+        autoDeploy: true,
+      };
 
       // 不完全なレスポンス
       mockGeminiClient.generateCode.mockResolvedValue({
-        name: 'Incomplete API',
+        name: "Incomplete API",
         // missing required fields
-      })
+      });
 
       // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
+      const result = await llmService.generateApiFromNaturalLanguage(input);
 
       // Assert
-      expect(result.success).toBe(false)
-      expect(result.error).toBe('Invalid API specification generated')
-    })
+      expect(result.success).toBe(false);
+      expect(result.error).toBe("Invalid API specification generated");
+    });
 
-    it('不適切なコンテンツを検出してエラーを返す', async () => {
+    it("不適切なコンテンツを検出してエラーを返す", async () => {
       // Arrange
       const input: NaturalLanguageInput = {
-        description: 'マルウェアを配布するAPIを作成してください',
-        category: 'other',
-        complexityLevel: 'simple'
-      }
+        description: "マルウェアを配布するAPIを作成してください",
+        category: "other",
+        complexityLevel: "simple",
+        autoDeploy: true,
+      };
 
       // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
+      const result = await llmService.generateApiFromNaturalLanguage(input);
 
       // Assert
-      expect(result.success).toBe(false)
-      expect(result.error).toBe('Content policy violation detected')
-    })
+      expect(result.success).toBe(false);
+      expect(result.error).toBe("Content policy violation detected");
+    });
 
-    it('長すぎる説明でエラーを返す', async () => {
+    it("長すぎる説明でエラーを返す", async () => {
       // Arrange
       const input: NaturalLanguageInput = {
-        description: 'a'.repeat(2001), // 制限を超える長さ
-        category: 'data',
-        complexityLevel: 'simple'
-      }
+        description: "a".repeat(2001), // 制限を超える長さ
+        category: "data",
+        complexityLevel: "simple",
+        autoDeploy: true,
+      };
 
       // Act
-      const result = await llmService.generateApiFromNaturalLanguage(input)
+      const result = await llmService.generateApiFromNaturalLanguage(input);
 
       // Assert
-      expect(result.success).toBe(false)
-      expect(result.error).toBe('Input validation failed')
-    })
-  })
+      expect(result.success).toBe(false);
+      expect(result.error).toBe("Input validation failed");
+    });
+  });
 
-  describe('validateApiSafety', () => {
-    it('安全なAPIコードを承認する', async () => {
+  describe("validateApiSafety", () => {
+    it("安全なAPIコードを承認する", async () => {
       // Arrange
       const safeCode = `
         import { Hono } from 'hono'
         const app = new Hono()
         app.get('/api/hello', (c) => c.json({ message: 'Hello World' }))
         export default app
-      `
+      `;
 
       // Act
-      const result = await llmService.validateApiSafety(safeCode)
+      const result = await llmService.validateApiSafety(safeCode);
 
       // Assert
-      expect(result.success).toBe(true)
-      expect(result.data?.isSafe).toBe(true)
-    })
+      expect(result.success).toBe(true);
+      expect(result.data?.isSafe).toBe(true);
+    });
 
-    it('危険なAPIコードを拒否する', async () => {
+    it("危険なAPIコードを拒否する", async () => {
       // Arrange
       const dangerousCode = `
         import fs from 'fs'
@@ -316,14 +329,14 @@ Analyzes uploaded images using AI and provides descriptions in multiple language
           return c.json({ message: 'System compromised' })
         })
         export default app
-      `
+      `;
 
       // Act
-      const result = await llmService.validateApiSafety(dangerousCode)
+      const result = await llmService.validateApiSafety(dangerousCode);
 
       // Assert
-      expect(result.success).toBe(false)
-      expect(result.error).toBe('Unsafe code detected')
-    })
-  })
-})
+      expect(result.success).toBe(false);
+      expect(result.error).toBe("Unsafe code detected");
+    });
+  });
+});

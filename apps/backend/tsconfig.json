@@ -1,18 +1,11 @@
 {
+  "extends": "@repo/tsconfig/base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022", 
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "lib": ["ES2022"],
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
+    "exactOptionalPropertyTypes": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": false
   },
   "include": [
     "src/**/*"
