@@ -161,4 +161,56 @@ authRoutes.put("/profile", async (c) => {
   }
 });
 
+// POST /password-reset/request - パスワードリセット要求
+authRoutes.post("/password-reset/request", async (c) => {
+  try {
+    const body = await c.req.json();
+    const database = await getDatabaseConnection();
+    const authService = new AuthService(database, JWT_SECRET);
+
+    const result = await authService.requestPasswordReset(body);
+
+    if (!result.success) {
+      return c.json({ error: result.error }, 400);
+    }
+
+    return c.json(
+      {
+        success: true,
+        data: result.data,
+        message: "Password reset request processed",
+      },
+      200,
+    );
+  } catch (_error) {
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
+// POST /password-reset/confirm - パスワードリセット実行
+authRoutes.post("/password-reset/confirm", async (c) => {
+  try {
+    const body = await c.req.json();
+    const database = await getDatabaseConnection();
+    const authService = new AuthService(database, JWT_SECRET);
+
+    const result = await authService.resetPassword(body);
+
+    if (!result.success) {
+      return c.json({ error: result.error }, 400);
+    }
+
+    return c.json(
+      {
+        success: true,
+        data: result.data,
+        message: "Password reset successfully",
+      },
+      200,
+    );
+  } catch (_error) {
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
 export { authRoutes };

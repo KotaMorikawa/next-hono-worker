@@ -1,4 +1,4 @@
-import { createClient, GeneratedApiOperations, type Database } from "@repo/db";
+import { createClient, type Database, GeneratedApiOperations } from "@repo/db";
 import { naturalLanguageInputSchema } from "@repo/shared/api";
 import { Hono } from "hono";
 import { DynamicDeploymentService } from "../services/dynamic-deployment-service";
@@ -150,7 +150,12 @@ generatorRoutes.post("/deploy/:id", async (c) => {
       name: apiResult.data.name,
       description: apiResult.data.description,
       endpoint: apiResult.data.endpoint,
-      method: apiResult.data.method as "GET" | "POST" | "PUT" | "DELETE" | "PATCH",
+      method: apiResult.data.method as
+        | "GET"
+        | "POST"
+        | "PUT"
+        | "DELETE"
+        | "PATCH",
       price: apiResult.data.price,
       generatedCode: apiResult.data.generatedCode,
       documentation: apiResult.data.documentation,
